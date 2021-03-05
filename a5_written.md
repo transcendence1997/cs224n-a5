@@ -80,3 +80,11 @@ Then, $\alpha_1\approx[0,0,1],\alpha_2\approx[1,0,0]$
 
 $c_1\approx v_3=u_b-u_c,c_2\approx v_1=u_b$
 
+## 2
+
+### (d)
+
+model’s accuracy: 5.0 out of 500.0: 1.0%
+
+London baseline: 4.55%
+
