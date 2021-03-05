@@ -114,13 +114,13 @@ elif args.function == 'finetune':
     #         final_tokens=200*len(pretrain_dataset)*block_size
     #         num_workers=4
     if args.reading_params_path is None:
-        tconf = TrainerConfig(max_epochs=75, batch_size=256, learning_rate=6e-4, lr_decay=True, warmup_tokens=512*20, 
+        tconf = trainer.TrainerConfig(max_epochs=75, batch_size=256, learning_rate=6e-4, lr_decay=True, warmup_tokens=512*20, 
                                 final_tokens=200*len(pretrain_dataset)*block_size, num_workers=4)
     else:
-        tconf = TrainerConfig(max_epochs=10, batch_size=256, learning_rate=6e-4, lr_decay=True, warmup_tokens=512*20, 
+        tconf = trainer.TrainerConfig(max_epochs=10, batch_size=256, learning_rate=6e-4, lr_decay=True, warmup_tokens=512*20, 
                                 final_tokens=200*len(pretrain_dataset)*block_size, num_workers=4)
         model.load_state_dict(torch.load(args.reading_params_path))
-    trainer = Trainer(model, NameDataset(pretrain_dataset, open(args.finetune_corpus_path).read()), None, tconf)
+    trainer = trainer.Trainer(model, NameDataset(pretrain_dataset, open(args.finetune_corpus_path).read()), None, tconf)
     trainer.train()
     torch.save(model.state_dict(), args.writing_params_path)
 elif args.function == 'evaluate':
