@@ -171,6 +171,7 @@ class CharCorruptionDataset(Dataset):
         d = self.data[idx]
         trunc_len = random.randint(4, int(self.block_size*7/8))
         trunc_d = d[:trunc_len]
+        trunc_len = len(trunc_d)
         mask_len = random.randint(int(trunc_len/4) - 1, int(trunc_len/4) + 1)
         prefix_len = random.randint(1, trunc_len - mask_len - 1)
         prefix = trunc_d[:prefix_len]
