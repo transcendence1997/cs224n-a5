@@ -160,11 +160,11 @@ class CharCorruptionDataset(Dataset):
 
         self.block_size = block_size
         self.vocab_size = vocab_size
-        self.data = data.split('\n')[:-1]
+        self.data = data.split('\n')
 
     def __len__(self):
         # returns the length of the dataset
-        return len(self.data)
+        return len(self.data) - 1
 
     def __getitem__(self, idx):
         # TODO [part e]: see spec above
