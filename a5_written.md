@@ -88,3 +88,7 @@ model’s accuracy: 5.0 out of 500.0: 1.0%
 
 London baseline: 4.55%
 
+### (f)
+
+accuracy on the dev set: 108.0 out of 500.0: 21.6%
+
