@@ -91,12 +91,12 @@ class SynthesizerAttention(nn.Module):
         #       How do these map to the matrices in the handout?
         B, T, C = x.size()
 
-        # calculate query, key, values for all heads in batch and move head forward to be the batch dim
         q = F.relu(self.w1(x)).view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        # calculate values for all heads in batch and move head forward to be the batch dim
         v = self.value(x).view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
 
-        # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
-        att = q @ self.w2.view(self.n_head, C // self.n_head, T).transpose(1,2) + self.b2
+        # (B, nh, T, hs) x (nh, hs, T) -> (B, nh, T, T)
+        att = q @ self.w2.view(self.n_head, C // self.n_head, T) + self.b2
         att = att.masked_fill(self.mask[:,:,:T,:T] == 0, -1e10) # todo: just use float('-inf') instead?
         att = F.softmax(att, dim=-1)
         att = self.attn_drop(att)
