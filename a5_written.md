@@ -92,3 +92,28 @@ London baseline: 4.55%
 
 accuracy on the dev set: 108.0 out of 500.0: 21.6%
 
+### (g)
+
+Accuracy on dev: 57.0 out of 500.0: 11.4%
+
+ii.
+
+In synthesizer self-attention, inputs at different positions cannot interact with eah other.
+
+## 3
+
+### (a)
+
+The pretrained parameters contains extra knowledge.
+
+### (b)
+
+1. If the model generates a incorrect answer, the user may take it as a true answer because it looks correct.
+2. Even if the model indeed generates a correct answer, the user may not believe that because it is possible for the model to generate an incorrect answer that looks correct.
+
+### (c)
+
+The model might generate the birthplace of another person who has similar name.
+
+Therefore, the user won't know whether the machine actually knows the answer (The machine will generate an answer that looks correct even if it doesn't know the true answer).
+
