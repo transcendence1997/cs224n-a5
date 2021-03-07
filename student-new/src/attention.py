@@ -96,7 +96,7 @@ class SynthesizerAttention(nn.Module):
         v = self.value(x).view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
 
         # (B, nh, T, hs) x (nh, hs, T) -> (B, nh, T, T)
-        att = q @ self.w2.view(self.n_head, C // self.n_head, self.config.block_size - 1)[:, :, :T] + self.b2[:T]
+        att = q @ self.w2.view(self.n_head, C // self.n_head, self.block_size - 1)[:, :, :T] + self.b2[:T]
         att = att.masked_fill(self.mask[:,:,:T,:T] == 0, -1e10) # todo: just use float('-inf') instead?
         att = F.softmax(att, dim=-1)
         att = self.attn_drop(att)
